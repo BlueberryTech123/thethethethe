@@ -44,8 +44,8 @@
             left: 50vw;
             top: 50vh;
 
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%) scale(125%);
+            transform: translate(-50%, -50%) scale(125%);
         }
         .pulled-out button {
             display: initial;
@@ -72,6 +72,13 @@
             right: -125px;
             /* top: 50%; */
         }
+
+        /* @media only screen and (max-width: 600px) {
+            .pulled-out {
+                -webkit-transform: translate(-50%, 50%) scale(125%) rotate(90deg);
+                transform: translate(-50%, 50%) scale(125%) rotate(90deg);
+            }
+        } */
     </style>
     <script>
         const colors = ["#1f46a8", "#ff5733", "#fcba03", "#299126", "#c94bb6", "#848c18"]
