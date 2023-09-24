@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hehehehe</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap');
+        .card {
+            background: #9d3030;
+            display: inline-block;
+            height: 150px;
+            width: 250px;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 3px 3px 10px #000;
+            transition: 180ms;
+        }
+        .card input {
+            border: none;
+            border-radius: 10px;
+            outline: 0;
+            width: 100%;
+            height: 70px;
+            text-align: center;
+            font-size: 40px;
+            font-family: "Libre Barcode 39 Text";
+            box-sizing: border-box;
+        }
+        .in-deck {
+            margin-bottom: -170px;
+        }
+        .in-deck:hover {
+            transform: translateX(-100px) rotate(5deg);
+            margin-bottom: -15px;
+            cursor: grab;
+            z-index: initial;
+        }
+        .in-deck button {
+            display: none;
+        }
+        .pulled-out {
+            position: fixed;
+            left: 50vw;
+            top: 50vh;
+
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        .pulled-out button {
+            display: initial;
+        }
+        .card button {
+            background: transparent;
+            color: #fff;
+            margin-top: 20px;
+            border: none;
+            border-radius: 69420px;
+            outline: 0;
+            padding: 15px;
+            backdrop-filter: brightness(110%);
+            -webkit-backdrop-filter: brightness(110%);
+            transition: 180px;
+        }
+        .card button:hover {
+            backdrop-filter: brightness(130%);
+            -webkit-backdrop-filter: brightness(130%);
+            cursor: pointer;
+        }
+        #card-display {
+            position: fixed;
+            right: -125px;
+            /* top: 50%; */
+        }
+    </style>
+    <script>
+        const colors = ["#1f46a8", "#ff5733", "#fcba03", "#299126", "#c94bb6", "#848c18"]
+        let colorIndex = 0;
+        let cardIndex = 0;
+        let yipeeee = ["95033092", "95068419", "", "hehehehe"];
+        let visible;
+
+        function loadCard(barcode) {
+            const color = colors[colorIndex];
+            document.getElementById("card-display").innerHTML += 
+            `<div class="card in-deck" style="background: ${color};" id="card-${cardIndex}" onclick="clearPulledCards(); toggleCard('card-${cardIndex}')">
+                <input placeholder="95000000" value="${barcode}" class="barcode-input" onclick="this.select()" disabled>
+                <button onclick="clearPulledCards();">Close lol</button>
+            </div><br>`;
+            colorIndex++;
+            cardIndex++;
+            colorIndex %= colors.length;
+        }
+        function loadCards() {
+            for (let i = 0; i < yipeeee.length; i++) {
+                loadCard(yipeeee[i]);
+            }
+        }
+        function toggleCard(id) {
+            const card = document.querySelector(`#${id}`);
+            const cardInput = card.querySelector(".barcode-input");
+            
+            if (visible == id) { // Remove current card id
+                visible = null;
+                console.log("i like balls");
+                setTimeout(() => {
+                    card.onclick = () => {
+                        clearPulledCards();
+                        toggleCard(id);
+                    };
+                }, 500);
+            }
+            else {
+                visible = id;
+                card.onclick = "";
+            }
+            card.classList.toggle("in-deck");
+            card.classList.toggle("pulled-out");
+            cardInput.disabled = !cardInput.disabled;
+        }
+        function clearPulledCards() {
+            if (visible) {
+                toggleCard(visible);
+            }
+        }
+    </script>
+</head>
+<body onload="loadCards()">
+    <h1>WOO GUNN APP WOOOO</h1>
+    <hr>
+    <h3>pERIOD 1 APP phYSIOCICCCCCCss 11111111</h3>
+    <h3>pERIOD 2 NoT APUSH ikr disgusting :(</h3>
+    <h3>pERIOD 3 hell (anal ysis hhhhh)</h3>
+    <h3>pERIOD 4 nothing :D</h3>
+    <p>placehodle r text to make this not look empty woooooo</p>
+
+    <div id="card-display">
+    </div>
+</body>
+</html>
